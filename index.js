@@ -1,36 +1,29 @@
 document.querySelector('.image-container').addEventListener('click', function(e) {
   const x = e.clientX;
   const y = e.clientY;
-  console.log(`x좌표 : ${x}, y좌표: ${y}`);
+  console.log(`clientX : ${x}, clientY: ${y}`);
 
-  const imgCoord = document.querySelector('.image-container').getBoundingClientRect();
-  const coord = document.querySelector(`.plus-icon.item-1`).getBoundingClientRect();
-  console.log('imgCoord', imgCoord);
-  console.log('coord', coord);
-  const perc_x = coord.x / (imgCoord.width + 24) * 100;
-  const perc_y = coord.y / (imgCoord.height + 29) * 100;
-  console.log('perc_x : ', perc_x);
-  console.log('perc_y : ', perc_y);
+  const imgContainerCoord = document.querySelector('.image-container').getBoundingClientRect();
+  const iconCoord = document.querySelector(`.plus-icon.item-1`).getBoundingClientRect();
+  const iconCoord2 = document.querySelector(`.plus-icon.item-2`).getBoundingClientRect();
+  console.log('imgContainerCoord', imgContainerCoord);
+  console.log('iconCoord', iconCoord);
+  console.log('iconCoord2', iconCoord2);
+
 });
 
 $(document).ready(function() {
   let currentTargetId = null;
+
+  $(`.detail-wrapper.item-1`).css('top', '89%');
+  $(`.detail-wrapper.item-1`).css('left', '72%');
+  $(`.detail-wrapper.item-2`).css('top', '94%');
+  $(`.detail-wrapper.item-2`).css('left', '17%');
+
   $('.plus-icon').mouseover(function() {
     const targetId = $(this)[0].className.split(' ')[1];
     currentTargetId = targetId;
     $(`.detail-wrapper.${targetId}`).fadeIn();
-
-    const imgCoord = document.querySelector('.image-container').getBoundingClientRect();
-    const coord = document.querySelector(`.plus-icon.${targetId}`).getBoundingClientRect();
-    // console.log('imgCoord', imgCoord);
-    // console.log('coord', coord);
-    const perc_x = coord.x / imgCoord.width * 100;
-    const perc_y = coord.y / (imgCoord.height + 80) * 100;
-    // console.log('perc_x : ', perc_x);
-    // console.log('perc_y : ', perc_y);
-
-    $(`.detail-wrapper.${targetId}`).css('left', `${perc_x}%`);
-    $(`.detail-wrapper.${targetId}`).css('top', `${perc_y}%`);
 
     $(`.detail-wrapper.${currentTargetId}`).mouseover(function() {
       $(`.detail-wrapper.${currentTargetId}`).fadeIn();
